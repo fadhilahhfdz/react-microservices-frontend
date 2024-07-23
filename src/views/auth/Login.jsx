@@ -1,0 +1,94 @@
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import Api from "../../services/api";
+
+export default function Login() {
+  const navigate = useNavigate();
+
+  const { setIsAuthenticated } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+//   const [validation, setValidation] = useState([]);
+//   const [loginFailed, setLoginFailed] = useState([]);
+
+  const login = async (e) => {
+    e.preventDefault();
+
+    await Api.post("/api/login", {
+      email: email,
+      password: password,
+    })
+      .then((response) => {
+        const { access_token, user } = response.data;
+        localStorage.setItem("token", access_token);
+        localStorage.setItem("user", JSON.stringify(user));
+
+        setIsAuthenticated(true);
+
+        if (user.role === "admin") {
+          navigate("/admin/dashboard", { replace: true });
+        } else {
+          navigate("/supplier/dashboard", { replace: true });
+        }
+      })
+      .catch((error) => {
+        // setValidation(error.response.data);
+        // setLoginFailed(error.response.data);
+        console.error('Login gagal', error)
+      });
+  };
+
+  return (
+    <div className="row justify-content-center mt-5">
+      <div className="col-md-4">
+        <div className="card border-0 rounded shadow-sm">
+          <div className="card-body">
+            <h4>Login</h4>
+            <hr />
+            {/* {validation.errors && (
+              <div className="alert alert-danger mt-2 pb-0">
+                {validation.errors.map((error, index) => (
+                  <p key={index}>
+                    {error.path} : {error.msg}
+                  </p>
+                ))}
+              </div>
+            )}
+            {loginFailed.message && (
+              <div className="alert alert-danger mt-2">
+                {loginFailed.message}
+              </div>
+            )} */}
+            <form onSubmit={login}>
+              <div className="form-group mb-3">
+                <label className="mb-1 fw-bold">Alamat Email</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-control"
+                  placeholder="Alamat Email"
+                />
+              </div>
+              <div className="form-group mb-3">
+                <label className="mb-1 fw-bold">Password</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="form-control"
+                  placeholder="Password"
+                />
+              </div>
+              <button type="submit" className="btn btn-primary w-100">
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
