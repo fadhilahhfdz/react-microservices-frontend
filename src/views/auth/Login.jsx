@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Api from "../../services/api";
 
@@ -41,11 +41,11 @@ export default function Login() {
   };
 
   return (
-    <div className="row justify-content-center mt-5">
+    <div className="row justify-content-center mt-5 pt-5">
       <div className="col-md-4">
         <div className="card border-0 rounded shadow-sm">
           <div className="card-body">
-            <h4>Login</h4>
+            <h4 className="fw-bold">Login</h4>
             <hr />
             {/* {validation.errors && (
               <div className="alert alert-danger mt-2 pb-0">
@@ -63,25 +63,24 @@ export default function Login() {
             )} */}
             <form onSubmit={login}>
               <div className="form-group mb-3">
-                <label className="mb-1 fw-bold">Alamat Email</label>
+                <label className="mb-1 fw-semibold">Alamat Email :</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="form-control"
-                  placeholder="Alamat Email"
                 />
               </div>
               <div className="form-group mb-3">
-                <label className="mb-1 fw-bold">Password</label>
+                <label className="mb-1 fw-semibold">Password :</label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="form-control"
-                  placeholder="Password"
                 />
               </div>
+              <p>Belum punya akun? <Link to='/register'>Register</Link></p>
               <button type="submit" className="btn btn-primary w-100">
                 Login
               </button>

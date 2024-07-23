@@ -1,11 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SidebarMenu() {
-  const navigate = useNavigate();
-
-  const { setIsAuthenticated } = useContext(AuthContext);
 
   const [user, setUser] = useState([]);
 
@@ -16,15 +12,6 @@ export default function SidebarMenu() {
       setUser(JSON.parse(userData));
     }
   }, []);
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-
-    setIsAuthenticated(false);
-
-    navigate("/login", { replace: true });
-  };
 
   return (
     <div className="card border-0 rounded shadow-sm">
@@ -68,13 +55,6 @@ export default function SidebarMenu() {
             >
               User
             </Link>
-            <a
-              onClick={logout}
-              className="list-group-item list-group-item-action"
-              style={{ cursor: "pointer" }}
-            >
-              Logout
-            </a>
           </div>
         )}
         {user.role === "supplier" && (
@@ -91,13 +71,6 @@ export default function SidebarMenu() {
             >
               Supplier
             </Link>
-            <a
-              onClick={logout}
-              className="list-group-item list-group-item-action"
-              style={{ cursor: "pointer" }}
-            >
-              Logout
-            </a>
           </div>
         )}
       </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Api from "../../services/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -25,17 +25,17 @@ export default function Register() {
       })
       .catch((error) => {
         // setValidation(error.response.data);
-        console.error('Gagal register', error)
+        console.error("Gagal register", error);
       });
   };
 
   return (
-    <div className="row justify-content-center">
+    <div className="row justify-content-center mt-5 pt-5">
       <div className="row justify-content-center">
         <div className="col-md-5">
           <div className="card border-0 rounded shadow-sm">
             <div className="card-body">
-              <h4>Register</h4>
+              <h4 className="fw-bold">Register</h4>
               <hr />
               {/* {validation.errors && (
                 <div className="alert alert-danger mt-2 pb-0">
@@ -48,57 +48,61 @@ export default function Register() {
               )} */}
               <form onSubmit={register}>
                 <div className="row">
-                  <div className="col-md-12 mb-3">
+                  <div className="col-md-6 mb-3">
                     <div className="form-group">
-                      <label className="mb-1 fw-bold">Nama</label>
+                      <label className="mb-1 fw-semibold">Nama :</label>
                       <input
                         type="text"
                         value={nama}
                         onChange={(e) => setNama(e.target.value)}
                         className="form-control"
-                        placeholder="Nama"
                       />
+                    </div>
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <div className="form-group">
+                      <label className="mb-1 fw-semibold">Role :</label>
+                      <select
+                        className="form-select"
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                      >
+                        <option value="" disabled>
+                          Pilih Role...
+                        </option>
+                        <option value="admin">Admin</option>
+                        <option value="supplier">Supplier</option>
+                      </select>
                     </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <div className="form-group">
-                      <label className="mb-1 fw-bold">Email</label>
+                      <label className="mb-1 fw-semibold">Email :</label>
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="form-control"
-                        placeholder="Alamat Email"
                       />
                     </div>
                   </div>
                   <div className="col-md-6 mb-3">
                     <div className="form-group">
-                      <label className="mb-1 fw-bold">Password</label>
+                      <label className="mb-1 fw-semibold">Password :</label>
                       <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="form-control"
-                        placeholder="Password"
                       />
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6 mb-3">
-                  <div className="form-group">
-                    <label className="mb-1 fw-bold">Role</label>
-                    <input
-                      type="text"
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                      className="form-control"
-                      placeholder="Role"
-                    />
-                  </div>
-                </div>
+                <p>
+                  Sudah punya akun? <Link to="/login">Login</Link>
+                </p>
                 <button type="submit" className="btn btn-primary w-100">
                   Register
                 </button>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Api from "../../services/api";
 import SidebarMenu from "../../components/SidebarMenu";
+import Navbar from "../../components/Navbar";
 
 export default function SupplierCreate() {
   const token = localStorage.getItem("token");
@@ -30,52 +31,55 @@ export default function SupplierCreate() {
   };
 
   return (
-    <div className="container mb-5 mt-5">
-      <div className="row">
-        <div className="col-md-3">
-          <SidebarMenu />
-        </div>
-        <div className="col-md-9">
-          <div className="card border-0 rounded shadow-sm">
-            <div className="card-header">Tambah Supplier</div>
-            <div className="card-body">
-              <form onSubmit={storeSupplier}>
-                <div className="form-group mb-3">
-                  <label className="mb-1 fw-bold">Nama Supplier</label>
-                  <input
-                    type="text"
-                    value={nama}
-                    onChange={(e) => setNama(e.target.value)}
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label className="mb-1 fw-bold">Nama Barang</label>
-                  <input
-                    type="text"
-                    value={namaBarang}
-                    onChange={(e) => setNamaBarang(e.target.value)}
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <label className="mb-1 fw-bold">Harga</label>
-                  <input
-                    type="number"
-                    value={harga}
-                    onChange={(e) => setHarga(e.target.value)}
-                    className="form-control"
-                  />
-                </div>
+    <>
+      <Navbar />
+      <div className="container mb-5 mt-5">
+        <div className="row">
+          <div className="col-md-3">
+            <SidebarMenu />
+          </div>
+          <div className="col-md-9">
+            <div className="card border-0 rounded shadow-sm">
+              <div className="card-header">Tambah Supplier</div>
+              <div className="card-body">
+                <form onSubmit={storeSupplier}>
+                  <div className="form-group mb-3">
+                    <label className="mb-1 fw-bold">Nama Supplier</label>
+                    <input
+                      type="text"
+                      value={nama}
+                      onChange={(e) => setNama(e.target.value)}
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="form-group mb-3">
+                    <label className="mb-1 fw-bold">Nama Barang</label>
+                    <input
+                      type="text"
+                      value={namaBarang}
+                      onChange={(e) => setNamaBarang(e.target.value)}
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="form-group mb-3">
+                    <label className="mb-1 fw-bold">Harga</label>
+                    <input
+                      type="number"
+                      value={harga}
+                      onChange={(e) => setHarga(e.target.value)}
+                      className="form-control"
+                    />
+                  </div>
 
-                <button type="submit" className="btn btn-sm btn-primary">
-                  Simpan
-                </button>
-              </form>
+                  <button type="submit" className="btn btn-sm btn-primary">
+                    Simpan
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
