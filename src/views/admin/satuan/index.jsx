@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
-import Api from "../../services/api";
-import SidebarMenu from "../../components/SidebarMenu";
+import Api from "../../../services/api";
+import Navbar from "../../../components/Navbar";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar";
+import SidebarMenu from "../../../components/SidebarMenu";
 
-export default function SupplierIndex() {
-  
-  const [supplier, setSupplier] = useState([]);
+export default function SatuanIndex() {
+  const [satuan, setSatuan] = useState([]);
 
-  const fetchDataSupplier = async () => {
+  const fetchDataSatuan = async () => {
     const token = localStorage.getItem("token");
 
     if (token) {
       Api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       try {
-        const response = await Api.get("/api/supplier");
+        const response = await Api.get("api/admin/satuan");
 
-        setSupplier(response.data);
+        setSatuan(response.data);
       } catch (error) {
-        console.error("Terjadi error ketika fetching data supplier", error);
+        console.error("Terjadi error ketika fetching data satuan", error);
       }
     } else {
       console.error("Token invalid");
@@ -27,21 +26,21 @@ export default function SupplierIndex() {
   };
 
   useEffect(() => {
-    fetchDataSupplier();
+    fetchDataSatuan();
   }, []);
 
-  const deleteSupplier = async (id) => {
+  const deleteSatuan = async (id) => {
     const token = localStorage.getItem("token");
 
     if (token) {
       Api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       try {
-        await Api.delete(`/api/supplier/${id}`);
+        await Api.delete(`api/admin/satuan/${id}`);
 
-        fetchDataSupplier();
+        fetchDataSatuan();
       } catch (error) {
-        console.error("Gagal menghapus data supplier", error);
+        console.error("Gagal menghapus data satuan");
       }
     } else {
       console.error("Token invalid");
@@ -59,44 +58,46 @@ export default function SupplierIndex() {
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
               <div className="card-header d-flex justify-content-between align-items-center">
-                <span>Supplier</span>
+                <span>Satuan</span>
                 <Link
-                  to="/supplier/create"
+                  to="/admin/satuan/create"
                   className="btn btn-sm btn-success rounded shadow-sm border-0"
                 >
-                  Tambah Supplier
+                  Tambah Satuan
                 </Link>
               </div>
               <div className="card-body">
                 <table className="table table-bordered">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th scope="col" className="text-center" style={{width: "5%"}}>No</th>
-                      <th scope="col">Nama Supplier</th>
-                      <th scope="col">Nama Barang</th>
-                      <th scope="col">Harga</th>
-                      <th scope="col" style={{ width: "17%" }}>
+                      <th
+                        scope="col"
+                        className="text-center"
+                        style={{ width: "7%" }}
+                      >
+                        No
+                      </th>
+                      <th scope="col">Nama Satuan</th>
+                      <th style={{ width: "20%" }} className="text-center">
                         Aksi
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {supplier.length > 0 ? (
-                      supplier.map((suppliers, index) => (
+                    {satuan.length > 0 ? (
+                      satuan.map((satuans, index) => (
                         <tr key={index}>
                           <td className="text-center">{index + 1}</td>
-                          <td>{suppliers.nama}</td>
-                          <td>{suppliers.nama_barang}</td>
-                          <td>Rp{suppliers.harga}</td>
+                          <td>{satuans.nama}</td>
                           <td className="text-center">
                             <Link
-                              to={`/supplier/edit/${suppliers.id}`}
+                              to={`/admin/satuan/edit/${satuans.id}`}
                               className="btn btn-sm btn-warning text-white rounded-sm border-0 me-2"
                             >
                               Edit
                             </Link>
                             <button
-                              onClick={() => deleteSupplier(suppliers.id)}
+                              onClick={() => deleteSatuan(satuans.id)}
                               className="btn btn-sm btn-danger rounded-sm border-0"
                             >
                               Hapus

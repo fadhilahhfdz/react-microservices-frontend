@@ -38,16 +38,16 @@ export default function SidebarMenu() {
               Satuan
             </Link>
             <Link
-              to="/admin/barang"
-              className="list-group-item list-group-item-action"
-            >
-              barang
-            </Link>
-            <Link
               to="/admin/supplier"
               className="list-group-item list-group-item-action"
             >
               Supplier
+            </Link>
+            <Link
+              to="/admin/barang"
+              className="list-group-item list-group-item-action"
+            >
+              barang
             </Link>
             <Link
               to="/admin/users"

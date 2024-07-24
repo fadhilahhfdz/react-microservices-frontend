@@ -54,7 +54,7 @@ export default function SupplierEdit() {
           </div>
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
-              <div className="card-header">Tambah Supplier</div>
+              <div className="card-header">Edit Supplier</div>
               <div className="card-body">
                 <form onSubmit={updateSupplier}>
                   <div className="form-group mb-3">
