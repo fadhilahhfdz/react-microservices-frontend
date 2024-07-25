@@ -69,6 +69,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="form-control"
+                  required
                 />
               </div>
               <div className="form-group mb-3">
@@ -78,6 +79,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="form-control"
+                  required
                 />
               </div>
               <p>Belum punya akun? <Link to='/register'>Register</Link></p>

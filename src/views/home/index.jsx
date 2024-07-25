@@ -7,7 +7,7 @@ export default function Home() {
         <div className="container-fluid py-5">
           <h1 className="display-5 fw-bold">Selamat Datang di Aplikasi Manajemen Barang</h1>
           <p className="col-md-12 fs-4">
-            Aplikasi Manajemen Barang Pada Toko kelontong
+            Aplikasi Manajemen Barang Pada Toko Kelontong
           </p>
           <hr />
           <Link to="/register" className="btn btn-primary btn-lg me-3">

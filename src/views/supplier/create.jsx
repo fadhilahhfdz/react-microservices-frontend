@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Api from "../../services/api";
 import SidebarMenu from "../../components/SidebarMenu";
 import Navbar from "../../components/Navbar";
@@ -40,11 +40,11 @@ export default function SupplierCreate() {
           </div>
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
-              <div className="card-header">Tambah Supplier</div>
+              <div className="card-header fw-bold">Tambah Supplier</div>
               <div className="card-body">
                 <form onSubmit={storeSupplier}>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Nama Supplier</label>
+                    <label className="mb-1 fw-semibold">Nama Supplier</label>
                     <input
                       type="text"
                       value={nama}
@@ -53,7 +53,7 @@ export default function SupplierCreate() {
                     />
                   </div>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Nama Barang</label>
+                    <label className="mb-1 fw-semibold">Nama Barang</label>
                     <input
                       type="text"
                       value={namaBarang}
@@ -62,9 +62,10 @@ export default function SupplierCreate() {
                     />
                   </div>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Harga</label>
+                    <label className="mb-1 fw-semibold">Harga</label>
                     <input
-                      type="number"
+                      type="text"
+                      inputMode="numeric"
                       value={harga}
                       onChange={(e) => setHarga(e.target.value)}
                       className="form-control"
@@ -74,6 +75,9 @@ export default function SupplierCreate() {
                   <button type="submit" className="btn btn-sm btn-primary">
                     Simpan
                   </button>
+                  <Link to="/supplier/supplier" className="mx-2 btn btn-sm btn-secondary">
+                    Kembali
+                  </Link>
                 </form>
               </div>
             </div>

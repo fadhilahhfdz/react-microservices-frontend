@@ -71,7 +71,7 @@ export default function Register() {
                           Pilih Role...
                         </option>
                         <option value="admin">Admin</option>
-                        <option value="supplier">Supplier</option>
+                        {/* <option value="supplier">Supplier</option> */}
                       </select>
                     </div>
                   </div>

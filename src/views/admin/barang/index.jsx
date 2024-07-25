@@ -4,21 +4,20 @@ import Navbar from "../../../components/Navbar";
 import SidebarMenu from "../../../components/SidebarMenu";
 import { Link } from "react-router-dom";
 
-export default function KategoriIndex() {
-  const [kategori, setKategori] = useState([]);
+export default function BarangIndex() {
+  const [barang, setBarang] = useState([]);
 
-  const fetchDataKategori = async () => {
+  const fetchDataBarang = async () => {
     const token = localStorage.getItem("token");
 
     if (token) {
       Api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       try {
-        const response = await Api.get("/api/admin/kategori");
-
-        setKategori(response.data);
+        const response = await Api.get("/api/admin/barang");
+        setBarang(response.data.data.barang);
       } catch (error) {
-        console.error("Terjadi error ketika fetching data kategori", error);
+        console.error("Terjadi error ketika fetching data barang", error);
       }
     } else {
       console.error("Token invalid");
@@ -26,21 +25,21 @@ export default function KategoriIndex() {
   };
 
   useEffect(() => {
-    fetchDataKategori();
+    fetchDataBarang();
   }, []);
 
-  const deleteKategori = async (id) => {
+  const deleteBarang = async (id) => {
     const token = localStorage.getItem("token");
 
     if (token) {
       Api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       try {
-        await Api.delete(`api/admin/kategori/${id}`);
+        await Api.delete(`/api/admin/barang/${id}`);
 
-        fetchDataKategori();
+        fetchDataBarang();
       } catch (error) {
-        console.error("Gagal menghapus data kategori", error);
+        console.error("Gagal menghapus data barang", error);
       }
     } else {
       console.error("Token invalid");
@@ -58,12 +57,12 @@ export default function KategoriIndex() {
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
               <div className="card-header d-flex justify-content-between align-items-center">
-                <span className="fw-bold">Kategori</span>
+                <span className="fw-bold">Barang</span>
                 <Link
-                  to="/admin/kategori/create"
+                  to="/admin/barang/create"
                   className="btn btn-sm btn-success rounded shadow-sm border-0"
                 >
-                  Tambah Kategori
+                  Tambah Barang
                 </Link>
               </div>
               <div className="card-body">
@@ -77,25 +76,37 @@ export default function KategoriIndex() {
                       >
                         No
                       </th>
-                      <th scope="col" className="fw-semibold">Nama Kategori</th>
-                      <th style={{width: "20%"}} className="text-center fw-semibold">Aksi</th>
+                      <th scope="col" className="fw-semibold">Kode</th>
+                      <th scope="col" className="fw-semibold">Nama Barang</th>
+                      <th scope="col" className="fw-semibold">Harga Jual</th>
+                      <th scope="col" style={{width: "7%"}} className="fw-semibold">stok</th>
+                      <th style={{width: "20%"}} className="fw-semibold text-center">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {kategori.length > 0 ? (
-                      kategori.map((kategoris, index) => (
+                    {barang.length > 0 ? (
+                      barang.map((barangs, index) => (
                         <tr key={index}>
                           <td className="text-center">{index + 1}</td>
-                          <td>{kategoris.nama}</td>
+                          <td style={{width: "15%"}}>{barangs.kode}</td>
+                          <td>{barangs.nama}</td>
+                          <td>Rp{barangs.harga}</td>
+                          <td>{barangs.stok}</td>
                           <td className="text-center">
                             <Link
-                              to={`/admin/kategori/edit/${kategoris.id}`}
+                              to={`/admin/barang/detail/${barangs.id}`}
+                              className="btn btn-sm btn-info text-white rounded-sm border-0 me-2"
+                            >
+                              Detail
+                            </Link>
+                            <Link
+                              to={`/admin/barang/edit/${barangs.id}`}
                               className="btn btn-sm btn-warning text-white rounded-sm border-0 me-2"
                             >
                               Edit
                             </Link>
                             <button
-                              onClick={() => deleteKategori(kategoris.id)}
+                              onClick={() => deleteBarang(barangs.id)}
                               className="btn btn-sm btn-danger rounded-sm border-0"
                             >
                               Hapus
@@ -105,7 +116,7 @@ export default function KategoriIndex() {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="4" className="text-center">
+                        <td colSpan="6" className="text-center">
                             <div className="alert alert-danger mb-0">
                                 Data belum tersedia!
                             </div>

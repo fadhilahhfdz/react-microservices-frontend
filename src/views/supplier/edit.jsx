@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Api from "../../services/api";
 import SidebarMenu from "../../components/SidebarMenu";
 import Navbar from "../../components/Navbar";
@@ -54,11 +54,11 @@ export default function SupplierEdit() {
           </div>
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
-              <div className="card-header">Edit Supplier</div>
+              <div className="card-header fw-bold">Edit Supplier</div>
               <div className="card-body">
                 <form onSubmit={updateSupplier}>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Nama Supplier</label>
+                    <label className="mb-1 fw-semibold">Nama Supplier</label>
                     <input
                       type="text"
                       value={nama}
@@ -67,7 +67,7 @@ export default function SupplierEdit() {
                     />
                   </div>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Nama Barang</label>
+                    <label className="mb-1 fw-semibold">Nama Barang</label>
                     <input
                       type="text"
                       value={namaBarang}
@@ -76,9 +76,10 @@ export default function SupplierEdit() {
                     />
                   </div>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Harga</label>
+                    <label className="mb-1 fw-semibold">Harga</label>
                     <input
-                      type="number"
+                      type="text"
+                      inputMode="numeric"
                       value={harga}
                       onChange={(e) => setHarga(e.target.value)}
                       className="form-control"
@@ -88,6 +89,9 @@ export default function SupplierEdit() {
                   <button type="submit" className="btn btn-sm btn-primary">
                     Update
                   </button>
+                  <Link to="/supplier/supplier" className="mx-2 btn btn-sm btn-secondary">
+                    Kembali
+                  </Link>
                 </form>
               </div>
             </div>

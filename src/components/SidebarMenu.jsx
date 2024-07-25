@@ -15,7 +15,7 @@ export default function SidebarMenu() {
 
   return (
     <div className="card border-0 rounded shadow-sm">
-      <div className="card-header">Navigasi</div>
+      <div className="card-header fw-bold">Navigasi</div>
       <div className="card-body">
         {user.role === "admin" && (
           <div className="list-group">
@@ -50,7 +50,7 @@ export default function SidebarMenu() {
               barang
             </Link>
             <Link
-              to="/admin/users"
+              to="/admin/user"
               className="list-group-item list-group-item-action"
             >
               User

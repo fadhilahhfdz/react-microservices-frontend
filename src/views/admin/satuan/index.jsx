@@ -58,7 +58,7 @@ export default function SatuanIndex() {
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
               <div className="card-header d-flex justify-content-between align-items-center">
-                <span>Satuan</span>
+                <span className="fw-bold">Satuan</span>
                 <Link
                   to="/admin/satuan/create"
                   className="btn btn-sm btn-success rounded shadow-sm border-0"
@@ -72,13 +72,13 @@ export default function SatuanIndex() {
                     <tr>
                       <th
                         scope="col"
-                        className="text-center"
+                        className="text-center fw-semibold"
                         style={{ width: "7%" }}
                       >
                         No
                       </th>
-                      <th scope="col">Nama Satuan</th>
-                      <th style={{ width: "20%" }} className="text-center">
+                      <th scope="col" className="fw-semibold">Nama Satuan</th>
+                      <th style={{ width: "20%" }} className="text-center fw-semibold">
                         Aksi
                       </th>
                     </tr>

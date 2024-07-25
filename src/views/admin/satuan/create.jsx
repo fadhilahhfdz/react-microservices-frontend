@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Api from "../../../services/api";
 import Navbar from "../../../components/Navbar";
 import SidebarMenu from "../../../components/SidebarMenu";
@@ -37,11 +37,11 @@ export default function SatuanCreate() {
           </div>
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
-              <div className="card-header">Tambah Satuan</div>
+              <div className="card-header fw-bold">Tambah Satuan</div>
               <div className="card-body">
                 <form onSubmit={storeSatuan}>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Nama Satuan</label>
+                    <label className="mb-1 fw-semibold">Nama Satuan</label>
                     <input
                       type="text"
                       value={nama}
@@ -52,6 +52,12 @@ export default function SatuanCreate() {
                   <button type="submit" className="btn btn-sm btn-primary">
                     Simpan
                   </button>
+                  <Link
+                    to="/admin/satuan"
+                    className="mx-2 btn btn-sm btn-secondary"
+                  >
+                    Kembali
+                  </Link>
                 </form>
               </div>
             </div>

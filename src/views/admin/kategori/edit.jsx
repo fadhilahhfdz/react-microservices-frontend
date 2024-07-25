@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Api from "../../../services/api";
 import SidebarMenu from "../../../components/SidebarMenu";
 import Navbar from "../../../components/Navbar";
@@ -48,11 +48,11 @@ export default function KategoriEdit() {
           </div>
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
-              <div className="card-header">Edit Kategori</div>
+              <div className="card-header fw-bold">Edit Kategori</div>
               <div className="card-body">
                 <form onSubmit={updateKategori}>
                   <div className="form-group mb-3">
-                    <label className="mb-1 fw-bold">Nama Kategori</label>
+                    <label className="mb-1 fw-semibold">Nama Kategori</label>
                     <input
                       type="text"
                       value={nama}
@@ -63,6 +63,9 @@ export default function KategoriEdit() {
                   <button type="submit" className="btn btn-sm btn-primary">
                     Update
                   </button>
+                  <Link to="/admin/kategori" className="mx-2 btn btn-sm btn-secondary">
+                    Kembali
+                  </Link>
                 </form>
               </div>
             </div>

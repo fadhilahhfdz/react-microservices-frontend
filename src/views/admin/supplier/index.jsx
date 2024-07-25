@@ -40,16 +40,16 @@ export default function AdminSupplierIndex() {
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
               <div className="card-header d-flex justify-content-between align-items-center">
-                <span>Supplier</span>
+                <span className="fw-bold">Supplier</span>
               </div>
               <div className="card-body">
                 <table className="table table-bordered">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th scope="col" className="text-center" style={{width: "5%"}}>No</th>
-                      <th scope="col">Nama Supplier</th>
-                      <th scope="col">Nama Barang</th>
-                      <th scope="col">Harga</th>
+                      <th scope="col" className="fw-semibold">Nama Supplier</th>
+                      <th scope="col" className="fw-semibold">Nama Barang</th>
+                      <th scope="col" className="fw-semibold">Harga</th>
                     </tr>
                   </thead>
                   <tbody>

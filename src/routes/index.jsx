@@ -15,6 +15,13 @@ import SatuanIndex from "../views/admin/satuan";
 import SatuanCreate from "../views/admin/satuan/create";
 import SatuanEdit from "../views/admin/satuan/edit";
 import AdminSupplierIndex from "../views/admin/supplier";
+import UserIndex from "../views/admin/user";
+import UserCreate from "../views/admin/user/create";
+import UserEdit from "../views/admin/user/edit";
+import BarangIndex from "../views/admin/barang";
+import BarangCreate from "../views/admin/barang/create";
+import BarangEdit from "../views/admin/barang/edit";
+import BarangDetail from "../views/admin/barang/detail";
 
 export default function AppRoutes() {
 
@@ -41,6 +48,17 @@ export default function AppRoutes() {
 
         {/* Route Admin Supplier */}
         <Route path="/admin/supplier" element={isAuthenticated ? <AdminSupplierIndex /> : <Navigate to="/login" replace />} />
+
+        {/* Route Admin Barang */}
+        <Route path="/admin/barang" element={isAuthenticated ? <BarangIndex /> : <Navigate to="/login" replace />} />
+        <Route path="/admin/barang/create" element={isAuthenticated ? <BarangCreate /> : <Navigate to="/login" replace />} />
+        <Route path="/admin/barang/edit/:id" element={isAuthenticated ? <BarangEdit /> : <Navigate to="/login" replace />} />
+        <Route path="/admin/barang/detail/:id" element={isAuthenticated ? <BarangDetail /> : <Navigate to="/login" replace />} />
+
+        {/* Route Admin User */}
+        <Route path="/admin/user" element={isAuthenticated ? <UserIndex /> : <Navigate to="/login" replace />} />
+        <Route path="/admin/user/create" element={isAuthenticated ? <UserCreate /> : <Navigate to="/login" replace />} />
+        <Route path="/admin/user/edit/:id" element={isAuthenticated ? <UserEdit /> : <Navigate to="/login" replace />} />
 
         {/* Route Supplier */}
         <Route path="/supplier/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />} />

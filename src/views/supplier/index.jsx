@@ -59,7 +59,7 @@ export default function SupplierIndex() {
           <div className="col-md-9">
             <div className="card border-0 rounded shadow-sm">
               <div className="card-header d-flex justify-content-between align-items-center">
-                <span>Supplier</span>
+                <span className="fw-bold">Supplier</span>
                 <Link
                   to="/supplier/create"
                   className="btn btn-sm btn-success rounded shadow-sm border-0"
@@ -71,11 +71,11 @@ export default function SupplierIndex() {
                 <table className="table table-bordered">
                   <thead className="bg-primary text-white">
                     <tr>
-                      <th scope="col" className="text-center" style={{width: "5%"}}>No</th>
-                      <th scope="col">Nama Supplier</th>
-                      <th scope="col">Nama Barang</th>
-                      <th scope="col">Harga</th>
-                      <th scope="col" style={{ width: "17%" }}>
+                      <th scope="col" className="text-center fw-semibold" style={{width: "5%"}}>No</th>
+                      <th scope="col" className="fw-semibold">Nama Supplier</th>
+                      <th scope="col" className="fw-semibold">Nama Barang</th>
+                      <th scope="col" className="fw-semibold">Harga</th>
+                      <th scope="col" style={{ width: "17%" }} className="fw-semibold">
                         Aksi
                       </th>
                     </tr>
@@ -106,7 +106,7 @@ export default function SupplierIndex() {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="4" className="text-center">
+                        <td colSpan="5" className="text-center">
                           <div className="alert alert-danger mb-0">
                             Data belum tersedia!
                           </div>
