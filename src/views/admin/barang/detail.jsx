@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import Api from "../../../services/api";
 import Navbar from "../../../components/Navbar";
 import SidebarMenu from "../../../components/SidebarMenu";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function BarangDetail() {
-
   const { id } = useParams();
 
   const [barang, setBarang] = useState([]);
@@ -55,7 +54,7 @@ export default function BarangDetail() {
     return sup ? sup.harga : "Null";
   };
 
-return (
+  return (
     <>
       <Navbar />
       <div className="container mb-5 mt-5">
@@ -155,6 +154,14 @@ return (
                         disabled
                       />
                     </div>
+                  </div>
+                  <div className="col-md-12">
+                    <Link
+                      to="/admin/barang"
+                      className="btn btn-sm btn-secondary"
+                    >
+                      Kembali
+                    </Link>
                   </div>
                 </div>
               </div>

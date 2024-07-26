@@ -23,7 +23,7 @@ export default function Navbar() {
 
     setIsAuthenticated(false);
 
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
   };
 
   return (
